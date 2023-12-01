@@ -1,5 +1,6 @@
 #API関連の情報が入っているの無視
 API.md
+Constants.swift
 
 
 #Xcodeプロジェクトに関連するユーザー固有の設定や情報を格納する
