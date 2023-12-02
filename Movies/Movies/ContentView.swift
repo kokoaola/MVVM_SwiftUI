@@ -15,7 +15,19 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
         }
-        .padding()
+        
+        //We will remove this code
+        ///Info.plistのApp Transport Security Settingsを設定、子としてAllow Arbitrary Loadsを追加しYesで設定
+        .onAppear{
+            HTTPClient().getMoviesBy(search: "kubi") { result in
+                switch result {
+                case .success(let movies):
+                    print(movies)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 
