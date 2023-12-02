@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
+
+//現在のビューをナビゲーションビューで囲んで返す
+extension View {
+    
+    func embedNavigationView() -> some View {
+        return NavigationView { self }
+    }
+    
+}

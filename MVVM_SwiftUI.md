@@ -11,8 +11,13 @@ ViewがViewModelにアクセスし、ViewModelがWebサービスを呼び出し�
 Modelは構造体、ViewModelはObservableObjectを継承できるようにクラスが良い
 ViewModel の責任は、更新された値をビューに提供すること
 
+APIの確認
+モデルを作る
+WebServicesクライアントを実装
+
 
 直すところ
-//@Publishedプロパティラッパーを使ってModelのインスタンスを監視可能にする
-    //値が増加したことがビューに通知され、再レンダリングされる
+//@Publishedプロパティラッパーを使ってModelのインスタンスを監視可能にし、値が増加したことがビューに通知され、再レンダリングされる
     @Published private var でモデルを公開しない
+
+リストをcellに分ける
