@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct MovieDetailScreen: View {
+    
+    let imdbId: String
+    @ObservedObject var movieDetailVM = MovieDetailViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            if movieDetailVM.loadingState == .loading {
+                LoadingView()
+            } else if movieDetailVM.loadingState == .success {
+                MovieDetailView(movieDetailVM: movieDetailVM)
+            } else if movieDetailVM.loadingState == .failed {
+                FailedView()
+            }
+            
+        }
+        
+        .onAppear {
+            self.movieDetailVM.getDetailsByImdbId(imdbId: self.imdbId)
+        }
     }
 }
 
-struct MovieDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieDetailScreen()
-    }
-}
+
+//struct MovieDetailScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MovieDetailScreen()
+//    }
+//}

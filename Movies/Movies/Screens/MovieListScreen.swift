@@ -25,21 +25,20 @@ struct MovieListScreen: View {
                 //Returnキーを押すと検索を実行
                 self.movieListVM.searchByName(self.movieName)
             }).textFieldStyle(RoundedBorderTextFieldStyle())
-//            Spacer()
-//
+                .padding(.horizontal)
+            
+            Spacer()
+
                 .navigationBarTitle("Movies")
             
-//            if self.movieListVM.loadingState == .success {
-//                MovieListView(movies: self.movieListVM.movies)
-//            } else if self.movieListVM.loadingState == .failed {
-//                FailedView()
-//            } else if self.movieListVM.loadingState == .loading {
-//                LoadingView()
-//            }
-            MovieListView(movies: self.movieListVM.movies)
-            
+            if self.movieListVM.loadingState == .success {
+                MovieListView(movies: self.movieListVM.movies)
+            } else if self.movieListVM.loadingState == .failed {
+                FailedView()
+            } else if self.movieListVM.loadingState == .loading {
+                LoadingView()
+            }
         }
-//        .padding()
             .embedNavigationView()
     }
 }

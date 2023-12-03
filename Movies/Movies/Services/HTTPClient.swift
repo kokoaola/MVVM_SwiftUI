@@ -19,13 +19,41 @@ enum NetworkError: Error {
 ///HTTPクライアントを表すクラス、Web APIからデータを取得する
 class HTTPClient {
     
+    /// 映画の詳細情報を取得する関数
+    func getMovieDetailsBy(imdbId: String, completion: @escaping (Result<MovieDetail, NetworkError>) -> Void) {
+        
+        // IMDb IDに基づいてURLを生成し、無効な場合はエラーを返す
+        guard let url = URL.forMoviesByImdbId(imdbId) else {
+            return completion(.failure(.badURL))
+        }
+        
+        // URLSessionを使用してデータタスクを作成し実行
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            // データが存在しないかエラーがある場合はnoDataエラーを返す
+            guard let data = data, error == nil else {
+                return completion(.failure(.noData))
+            }
+            
+            // 取得したデータをJSONデコードし、失敗した場合はdecodingErrorを返す
+            guard let movieDetail = try? JSONDecoder().decode(MovieDetail.self, from: data) else {
+                return completion(.failure(.decodingError))
+            }
+            
+            // 成功した場合は映画の詳細情報を返す
+            completion(.success(movieDetail))
+            
+        }.resume() // データタスクを開始
+    }
+
+    
+    
     ///映画情報を検索して取得するメソッド
     func getMoviesBy(search: String, completion: @escaping (Result<[Movie]?,NetworkError>) -> Void) {
         
 //        guard let url = URL(string: "https://www.omdbapi.com/?s=\(search)&apikey=\(Constants.API_KEY)") else{
 //            return completion(.failure(.badURL))
 //        }
-        
         
         //検索文字列に基づいてURLを生成し、無効な場合はエラーを返す
         guard let url = URL.forMoviesByName(search) else {

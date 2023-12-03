@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+enum LoadingState {
+    case loading, success, failed, none
+}
+
+///ロード状態タイプを管理するビューモデル
+class ViewModelBase: ObservableObject {
+    //デフォルトは.none
+    @Published var loadingState: LoadingState = .none
+}

@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 ///映画のリストを管理するViewModel
-class MovieListViewModel: ObservableObject {
+///ViewModelBase（検索結果の管理用のビューモデル）がすでにObservableobjectを実装しているため、Observableobjectはへの準拠は不要
+class MovieListViewModel: ViewModelBase{
 
     ///ビューが観察できる映画データの配列
     @Published var movies = [MovieViewModel]()
@@ -25,24 +26,25 @@ class MovieListViewModel: ObservableObject {
         }
 
 //        //ローディング状態を開始
-//        self.loadingState = .loading
+        self.loadingState = .loading
 
         //HTTPクライアントを使用して映画を検索
-        httpClient.getMoviesBy(search: name) { result in
+        //スペースを%20に置き換える
+        httpClient.getMoviesBy(search: name.trimmedAndEscaped()) { result in
             switch result {
             case .success(let movies):
                 //成功した場合はムービー配列を1つずつマッピングし、映画データに変換（イニシャライズ）
                 if let movies = movies {
                     DispatchQueue.main.async {
                         self.movies = movies.map(MovieViewModel.init)
-//                        self.loadingState = .success
+                        self.loadingState = .success
                     }
                 }
             case .failure(let error):
-                //エラー時はコンソールにエラーを表示し、失敗状態に更新
+                //エラー時はコンソールにエラーを表示し、メインスレッドで失敗状態に更新
                 print(error.localizedDescription)
                 DispatchQueue.main.async {
-//                    self.loadingState = .failed
+                    self.loadingState = .failed
                 }
             }
         }
