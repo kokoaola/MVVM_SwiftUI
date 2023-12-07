@@ -11,6 +11,12 @@
 		3BB7BCEB2B1DD2FE00E12E80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7BCEA2B1DD2FE00E12E80 /* ContentView.swift */; };
 		3BB7BCED2B1DD2FF00E12E80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB7BCEC2B1DD2FF00E12E80 /* Assets.xcassets */; };
 		3BB7BCF02B1DD2FF00E12E80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB7BCEF2B1DD2FF00E12E80 /* Preview Assets.xcassets */; };
+		3BB7BCFD2B1DD34B00E12E80 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7BCFC2B1DD34B00E12E80 /* Double+Extensions.swift */; };
+		3BB7BCFF2B1DD3A300E12E80 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7BCFE2B1DD3A300E12E80 /* URL+Extensions.swift */; };
+		3BB7BD012B1DD3AE00E12E80 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7BD002B1DD3AE00E12E80 /* View+Extensions.swift */; };
+		3BB7BD042B1DD61C00E12E80 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7BD032B1DD61C00E12E80 /* Account.swift */; };
+		3BB7BD062B1DD70000E12E80 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7BD052B1DD70000E12E80 /* AccountService.swift */; };
+		3BB7BD082B1DDB9400E12E80 /* AccountSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7BD072B1DDB9400E12E80 /* AccountSummaryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		3BB7BCEA2B1DD2FE00E12E80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3BB7BCEC2B1DD2FF00E12E80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BB7BCEF2B1DD2FF00E12E80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3BB7BCFC2B1DD34B00E12E80 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		3BB7BCFE2B1DD3A300E12E80 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		3BB7BD002B1DD3AE00E12E80 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		3BB7BD032B1DD61C00E12E80 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		3BB7BD052B1DD70000E12E80 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		3BB7BD072B1DDB9400E12E80 /* AccountSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,12 @@
 		3BB7BCE72B1DD2FE00E12E80 /* BankApp */ = {
 			isa = PBXGroup;
 			children = (
+				3BB7BCF62B1DD32400E12E80 /* Models */,
+				3BB7BCFA2B1DD32400E12E80 /* Screens */,
+				3BB7BCF92B1DD32400E12E80 /* Services */,
+				3BB7BCF72B1DD32400E12E80 /* View Models */,
+				3BB7BCFB2B1DD33000E12E80 /* Extensions */,
+				3BB7BCF82B1DD32400E12E80 /* Views */,
 				3BB7BCE82B1DD2FE00E12E80 /* BankAppApp.swift */,
 				3BB7BCEA2B1DD2FE00E12E80 /* ContentView.swift */,
 				3BB7BCEC2B1DD2FF00E12E80 /* Assets.xcassets */,
@@ -65,6 +83,54 @@
 				3BB7BCEF2B1DD2FF00E12E80 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3BB7BCF62B1DD32400E12E80 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7BD032B1DD61C00E12E80 /* Account.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3BB7BCF72B1DD32400E12E80 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7BD072B1DDB9400E12E80 /* AccountSummaryViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		3BB7BCF82B1DD32400E12E80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3BB7BCF92B1DD32400E12E80 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7BD052B1DD70000E12E80 /* AccountService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3BB7BCFA2B1DD32400E12E80 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		3BB7BCFB2B1DD33000E12E80 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3BB7BCFC2B1DD34B00E12E80 /* Double+Extensions.swift */,
+				3BB7BCFE2B1DD3A300E12E80 /* URL+Extensions.swift */,
+				3BB7BD002B1DD3AE00E12E80 /* View+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +203,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BB7BCFD2B1DD34B00E12E80 /* Double+Extensions.swift in Sources */,
+				3BB7BCFF2B1DD3A300E12E80 /* URL+Extensions.swift in Sources */,
 				3BB7BCEB2B1DD2FE00E12E80 /* ContentView.swift in Sources */,
+				3BB7BD012B1DD3AE00E12E80 /* View+Extensions.swift in Sources */,
+				3BB7BD062B1DD70000E12E80 /* AccountService.swift in Sources */,
 				3BB7BCE92B1DD2FE00E12E80 /* BankAppApp.swift in Sources */,
+				3BB7BD042B1DD61C00E12E80 /* Account.swift in Sources */,
+				3BB7BD082B1DDB9400E12E80 /* AccountSummaryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
