@@ -16,12 +16,13 @@ class AccountSummaryViewModel: ObservableObject {
     private var _accountModels = [Account]()
     
     /// アカウントViewModelの配列を公開
+    /// @Publishedをつけると値が変更された時に自動でビューが更新される
     @Published var accounts: [AccountViewModel] = [AccountViewModel]()
     
     /// アカウントの合計残高を計算
     var total: Double {
         //0から各要素を合計して配列の全要素を一つの値にまとめる
-        //手が加えられる可能性があるためビューモデルを経由せずモデルオブジェクトから計算する
+        //ビューモデルは手が加えられる可能性があるため、ビューモデルを経由せずモデルオブジェクトからコピーした配列で計算する
         _accountModels.map { $0.balance }.reduce(0, +)
     }
     
@@ -33,9 +34,11 @@ class AccountSummaryViewModel: ObservableObject {
             switch result {
                 //成功：ビューに表示するために、ビューモデルのインスタンスを生成
             case .success(let accounts):
+                //アンラップに成功したら
                 if let accounts = accounts {
                     //total計算用のrowData
                     self._accountModels = accounts
+                    //accounts配列の全ての要素をAccountViewModel型のインスタンスに初期化
                     DispatchQueue.main.async {
                         self.accounts = accounts.map(AccountViewModel.init)
                     }
@@ -51,6 +54,7 @@ class AccountSummaryViewModel: ObservableObject {
 
 
 /// アカウントに関連するデータのViewModel
+/// 必要なデータのみを抽出して、必要な形式でビューに送信するため
 class AccountViewModel {
     
     var account: Account
