@@ -107,8 +107,48 @@ class AccountService {
                 // 成功した場合はアカウントの配列を返す
                 completion(.success(accounts))
             }
-            
         }.resume() // データタスクを開始
     }
+    
+    
+    
+    /// 口座から口座へ送金を実行するためのメソッド
+    /// transferFundsは資金の移動（送金）リクエストをサーバーに送る関数
+    /// transferFundRequestを受け取り、非同期でサーバーに送金リクエストを送る
+    /// 結果はResult型でcompletionハンドラを通じて返される
+    func transferFunds(transferFundRequest: TransferFundRequest, completion: @escaping (Result<TransferFundResponse, NetworkError>) -> Void) {
+        
+        // URL.urlForTransferFundsを使用して送金用のURLを取得
+        // URLが取得できない場合はエラーを返す
+        guard let url = URL.urlForTransferFunds() else {
+            return completion(.failure(.badUrl))
+        }
+        
+        // URLRequestを作成し、HTTPメソッド、ヘッダ、ボディを設定
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //transferFundRequestをbodyとしてエンコード
+        request.httpBody = try? JSONEncoder().encode(transferFundRequest)
+        
+        // URLSessionを使用して非同期でデータタスクを作成し、実行
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // レスポンスデータが存在し、エラーがないことを確認
+            // そうでない場合はエラーを返す
+            guard let data = data, error == nil else {
+                return completion(.failure(.noData))
+            }
+            // 受け取ったデータ（成功失敗が格納されてる）をJSONデコードしてTransferFundResponse型に変換
+            let transferFundRes = try? JSONDecoder().decode(TransferFundResponse.self, from: data)
+            
+            // デコードが成功した場合はアンラップした成功結果を返し、失敗した場合はエラーを返す
+            if let transferFundRes = transferFundRes {
+                completion(.success(transferFundRes))
+            } else {
+                completion(.failure(.decodingError))
+            }
+        }.resume() // データタスクを開始
+    }
+    
 }
 

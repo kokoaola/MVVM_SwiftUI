@@ -23,4 +23,10 @@ extension URL {
         //指定された文字列からURLを生成
         return URL(string: "https://bank-api.glitch.me/api/accounts")
     }
+    
+    
+    //送金時に称するURLを生成
+    static func urlForTransferFunds() -> URL? {
+        return URL(string: "https://bank-api.glitch.me/api/transfer")
+    }
 }

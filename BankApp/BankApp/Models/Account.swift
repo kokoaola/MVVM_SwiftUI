@@ -17,7 +17,7 @@ enum AccountType: String, Codable, CaseIterable {
 
 //大文字で始まるキーなので、拡張機能内で切り替える
 extension AccountType {
-
+    
     var title: String {
         switch self {
         case .checking:
@@ -26,13 +26,11 @@ extension AccountType {
             return "Saving"
         }
     }
-
 }
 
 
 ///DTO(データ転送オブジェクト)のモデル
 struct Account: Codable {
-    
     var id: UUID
     var name: String
     let accountType: AccountType
